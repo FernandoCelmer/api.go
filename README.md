@@ -22,6 +22,8 @@ package main
 
 import (
 	web "api/app/web"
+	"io"
+	"net/http"
 )
 
 func main() {
@@ -31,10 +33,15 @@ func main() {
 		web.Version("0.1.0"),
 	)
 
-	app.Get("/hello", handler.helloHandler)
+	app.Get("/hello", helloHandler)
 	app.Run(8080)
 
 }
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+	io.WriteString(w, "Test")
+}
+
 ```
 
 ## Commit Style
