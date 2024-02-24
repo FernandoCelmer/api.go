@@ -1,0 +1,225 @@
+<!doctype html>
+<html>
+    <head>
+                <title>API.go</title>
+
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+            <meta name="description" content="None">
+            
+            
+
+            
+                <link  rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+            
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+                        <script>hljs.initHighlightingOnLoad();</script>
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fira+Mono:400,700">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+            <link rel="stylesheet" href="assets/css/main.min.css">
+                <script src="search/main.js"></script>
+
+            
+                
+            
+    </head>
+
+    <body>
+        <div class="container py-3">
+            <header>
+                    <!-- block header -->
+<nav class="navbar navbar-expand-xl border-bottom">
+    <div class="container-fluid">
+        
+
+        
+            <span class=" fs-4 title-color site-name" id="component-site-name" style="text-transform: uppercase;">API.go</span>
+        
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsMenu"
+            aria-controls="navbarsMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse flex-column ml-auto" id="navbarsMenu">
+            <ul class="navbar-nav">
+
+                <!-- block menu -->
+                <li class="nav-item">
+                    <!-- block menu -->
+<!-- endblock -->
+                </li>
+                <!-- endblock -->
+
+                <!-- block search -->
+                <li class="nav-item">
+                    <a class="collapsed" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <div class="md-search-icon">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </div>
+                    </a>
+                </li>
+                <!--  endblock -->
+
+                <!-- block source -->
+                <li class="nav-item">
+                    
+                        
+                            <!-- block source -->
+<div class="md-source source-detail">
+  <div class="md-source-repo-icon">
+    <i class="fa fa-github-alt" aria-hidden="true"></i>
+  </div>
+
+  <div class="md-source-repo-url">
+    <a href="https://github.com/FernandoCelmer/api.go" class="md-source">
+      FernandoCelmer/api.go
+    </a>
+
+    <ul class="md-source-repo-text">
+      <li>
+        <i class="fa fa-tag" aria-hidden="true"></i>
+        <img alt="GitHub tag (latest by date)"
+          src="https://img.shields.io/github/v/tag/FernandoCelmer/api.go?color=white&label=%20&style=flat-square">
+      </li>
+
+      <li>
+        <i class="fa fa-star" aria-hidden="true"></i>
+        <img alt="GitHub Repo stars"
+          src="https://img.shields.io/github/stars/FernandoCelmer/api.go?color=white&label=%20&style=flat-square">
+      </li>
+
+      <li>
+        <i class="fa fa-code-fork" aria-hidden="true"></i>
+        <img alt="GitHub forks"
+          src="https://img.shields.io/github/forks/FernandoCelmer/api.go?color=white&label=%20&style=flat-square">
+      </li>
+    </ul>
+  </div>
+
+</div>
+<!--  endblock -->
+                        
+                    
+                </li>
+                <!--  endblock -->
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--  endblock -->
+            </header>
+
+            <main><!-- block search -->
+<div class="collapse" id="collapseExample">
+    <div role="search" class="search-box">
+        <form id="rtd-search-form" class="wy-form" action="./search.html" method="get">
+            <input type="text" name="q" class="search-query"
+            placeholder="Search docs" title="Type search term here" />
+        </form>
+    </div>
+</div>
+<!-- endblock -->
+                    <!-- block content -->
+<section class="container post">
+    <article>
+        <header>
+            
+            
+        </header>
+        <p><h1 id="apigo">api.go</h1>
+<hr />
+<ul>
+<li><strong>Documentation</strong>: <a href="https://github.com/FernandoCelmer/api.go">https://github.com/FernandoCelmer/api.go</a></li>
+<li><strong>Source Code</strong>: <a href="https://github.com/FernandoCelmer/api.go">https://github.com/FernandoCelmer/api.go</a></li>
+</ul>
+<hr />
+<h2 id="installation">Installation</h2>
+<p>To install, simply run:</p>
+<pre><code class="language-shell">go get github.com/FernandoCelmer/api.go
+</code></pre>
+<h2 id="example">Example</h2>
+<pre><code class="language-go">package main
+
+import (
+    &quot;io&quot;
+    &quot;net/http&quot;
+
+    web &quot;github.com/FernandoCelmer/api.go/src&quot;
+)
+
+func main() {
+    app := web.NewApp(
+        web.Title(&quot;API&quot;),
+        web.Description(&quot;Minimalist API Test&quot;),
+        web.Version(&quot;0.1.0&quot;),
+    )
+
+    app.Get(&quot;/hello&quot;, helloHandler)
+    app.Run(8080)
+
+}
+
+func helloHandler(w http.ResponseWriter, r *http.Request) {
+    io.WriteString(w, &quot;Test&quot;)
+}
+</code></pre>
+<h2 id="commit-style">Commit Style</h2>
+<ul>
+<li>⚙️ FEATURE</li>
+<li>📝 PEP8</li>
+<li>📌 ISSUE</li>
+<li>🪲 BUG</li>
+<li>📘 DOCS</li>
+<li>📦 PyPI</li>
+<li>❤️️ TEST</li>
+<li>⬆️ CI/CD</li>
+<li>⚠️ SECURITY</li>
+</ul>
+<h2 id="license">License</h2>
+<p>This project is licensed under the terms of the MIT license.</p></p>
+    </article>
+</section>
+<!-- endblock -->
+            </main>
+
+            
+                    <!-- block preview -->
+<!-- endblock -->
+            
+
+            
+                    <!-- block footer -->
+<footer class="pt-4 my-md-5 pt-md-5 border-top" id="component-footer">
+    <div class="row">
+        <div class="col-12 col-md">
+                <!-- block copyright -->
+    <small class="d-block mb-3">Fernando Celmer</small>
+
+    <small class="d-block mb-3">
+        Made with
+        <a href="https://github.com/FernandoCelmer/mkdocs-simple-blog" target="_blank" rel="noopener">
+            Simple Blog for MkDocs
+        </a>
+    </small>
+
+<!-- endblock -->
+        </div>
+    </div>
+</footer>
+<!-- endblock -->
+            
+        </div>
+
+            <script>var base_url = '.';</script>
+            <script src="assets/js/jquery-3.3.1.slim.min.js""></script>
+            <script src="assets/js/bootstrap.bundle.min.js""></script>
+            <script src="assets/js/main.min.js""></script>
+                <script src="search/main.js" defer></script>
+
+    </body>
+
+</html>
