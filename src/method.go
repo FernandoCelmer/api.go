@@ -2,7 +2,7 @@ package web
 
 import "net/http"
 
-func get(handler func(http.ResponseWriter, *http.Request)) http.Handler {
+func get(handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodGet {
 			handler(w, r)
@@ -12,7 +12,7 @@ func get(handler func(http.ResponseWriter, *http.Request)) http.Handler {
 	})
 }
 
-func post(handler func(http.ResponseWriter, *http.Request)) http.Handler {
+func post(handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPost {
 			handler(w, r)
@@ -22,7 +22,7 @@ func post(handler func(http.ResponseWriter, *http.Request)) http.Handler {
 	})
 }
 
-func put(handler func(http.ResponseWriter, *http.Request)) http.Handler {
+func put(handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPut {
 			handler(w, r)
@@ -32,7 +32,7 @@ func put(handler func(http.ResponseWriter, *http.Request)) http.Handler {
 	})
 }
 
-func patch(handler func(http.ResponseWriter, *http.Request)) http.Handler {
+func patch(handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodPatch {
 			handler(w, r)
@@ -42,7 +42,7 @@ func patch(handler func(http.ResponseWriter, *http.Request)) http.Handler {
 	})
 }
 
-func delete(handler func(http.ResponseWriter, *http.Request)) http.Handler {
+func delete(handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodDelete {
 			handler(w, r)
@@ -52,7 +52,7 @@ func delete(handler func(http.ResponseWriter, *http.Request)) http.Handler {
 	})
 }
 
-func options(handler func(http.ResponseWriter, *http.Request)) http.Handler {
+func options(handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == http.MethodOptions {
 			handler(w, r)

@@ -5,15 +5,15 @@ import (
 	"net/http"
 )
 
-type typeHandler func(http.ResponseWriter, *http.Request)
+type funcHandler func(http.ResponseWriter, *http.Request)
 
 type Client interface {
-	Get(route string, handler typeHandler)
-	Post(route string, handler typeHandler)
-	Put(route string, handler typeHandler)
-	Patch(route string, handler typeHandler)
-	Delete(route string, handler typeHandler)
-	Options(route string, handler typeHandler)
+	Get(route string, handler funcHandler)
+	Post(route string, handler funcHandler)
+	Put(route string, handler funcHandler)
+	Patch(route string, handler funcHandler)
+	Delete(route string, handler funcHandler)
+	Options(route string, handler funcHandler)
 	Run(port int)
 }
 
@@ -29,27 +29,27 @@ func NewApp(args ...Option) Client {
 	return &web{*config}
 }
 
-func (web *web) Get(route string, handler typeHandler) {
+func (web *web) Get(route string, handler funcHandler) {
 	http.Handle(route, get(handler))
 }
 
-func (web *web) Post(route string, handler typeHandler) {
+func (web *web) Post(route string, handler funcHandler) {
 	http.Handle(route, post(handler))
 }
 
-func (web *web) Put(route string, handler typeHandler) {
+func (web *web) Put(route string, handler funcHandler) {
 	http.Handle(route, put(handler))
 }
 
-func (web *web) Patch(route string, handler typeHandler) {
+func (web *web) Patch(route string, handler funcHandler) {
 	http.Handle(route, patch(handler))
 }
 
-func (web *web) Delete(route string, handler typeHandler) {
+func (web *web) Delete(route string, handler funcHandler) {
 	http.Handle(route, delete(handler))
 }
 
-func (web *web) Options(route string, handler typeHandler) {
+func (web *web) Options(route string, handler funcHandler) {
 	http.Handle(route, options(handler))
 }
 
