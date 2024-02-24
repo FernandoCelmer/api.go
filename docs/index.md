@@ -7,6 +7,36 @@
 
 ---
 
+## Installation
+
+To install, simply run:
+
+```shell
+go get github.com/FernandoCelmer/api.go
+```
+
+## Example
+
+```go
+package main
+
+import (
+	web "api/app/web"
+)
+
+func main() {
+	app := web.NewApp(
+		web.Title("API"),
+		web.Description("Minimalist API Test"),
+		web.Version("0.1.0"),
+	)
+
+	app.Get("/hello", handler.helloHandler)
+	app.Run(8080)
+
+}
+```
+
 ## Commit Style
 
 - ⚙️ FEATURE

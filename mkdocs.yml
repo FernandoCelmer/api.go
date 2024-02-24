@@ -1,0 +1,13 @@
+site_name: API.go
+repo_name: FernandoCelmer/api.go
+repo_url: https://github.com/FernandoCelmer/api.go
+copyright: Fernando Celmer
+
+nav:
+    - Home: index.md
+
+theme:
+  name: simple-blog
+  theme_style: light
+  components:
+    title: false
