@@ -22,10 +22,16 @@ type web struct {
 }
 
 func NewApp(args ...Option) Client {
-	config := &Config{}
+	config := &Config{docs: true}
+
 	for _, opt := range args {
 		opt(config)
 	}
+
+	if config.docs {
+		http.Handle("/docs", get(docsHandler))
+	}
+
 	return &web{*config}
 }
 
