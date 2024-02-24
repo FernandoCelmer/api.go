@@ -21,9 +21,10 @@ go get github.com/FernandoCelmer/api.go
 package main
 
 import (
-	web "api/app/web"
 	"io"
 	"net/http"
+
+	web "github.com/FernandoCelmer/api.go/src"
 )
 
 func main() {
@@ -41,7 +42,6 @@ func main() {
 func helloHandler(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, "Test")
 }
-
 ```
 
 ## Commit Style
