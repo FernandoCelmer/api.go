@@ -5,6 +5,7 @@ type Config struct {
 	description string
 	version     string
 	docs        bool
+	debug       bool
 }
 
 type Option func(option *Config)
@@ -30,5 +31,11 @@ func Version(value string) Option {
 func Docs(value bool) Option {
 	return func(option *Config) {
 		option.docs = value
+	}
+}
+
+func Debug(value bool) Option {
+	return func(option *Config) {
+		option.debug = value
 	}
 }
