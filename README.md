@@ -2,6 +2,7 @@
 
 ---
 
+- **Go Package**: [https://pkg.go.dev/github.com/FernandoCelmer/api.go/src](https://pkg.go.dev/github.com/FernandoCelmer/api.go/src)
 - **Documentation**: [https://fernandocelmer.github.io/api.go/](https://fernandocelmer.github.io/api.go)
 - **Source Code**: [https://github.com/FernandoCelmer/api.go](https://github.com/FernandoCelmer/api.go)
 
