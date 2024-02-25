@@ -4,74 +4,60 @@ import (
 	"net/http"
 )
 
-func get(config Config, handler funcHandler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		logRequest(config.debug, r)
+func execRequest(
+	method string,
+	handler funcHandler,
+	w http.ResponseWriter,
+	r *http.Request,
+) {
+	if method == r.Method {
+		handler(w, r)
+	} else {
+		http.Error(
+			w, http.StatusText(405),
+			http.StatusMethodNotAllowed,
+		)
+	}
+}
 
-		if r.Method == http.MethodGet {
-			handler(w, r)
-		} else {
-			http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
-		}
+func get(config AppConfig, handler funcHandler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		traceRequest(config.debug, r)
+		execRequest(http.MethodGet, handler, w, r)
 	})
 }
 
-func post(config Config, handler funcHandler) http.Handler {
+func post(config AppConfig, handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		logRequest(config.debug, r)
-
-		if r.Method == http.MethodPost {
-			handler(w, r)
-		} else {
-			http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
-		}
+		traceRequest(config.debug, r)
+		execRequest(http.MethodPost, handler, w, r)
 	})
 }
 
-func put(config Config, handler funcHandler) http.Handler {
+func put(config AppConfig, handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		logRequest(config.debug, r)
-
-		if r.Method == http.MethodPut {
-			handler(w, r)
-		} else {
-			http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
-		}
+		traceRequest(config.debug, r)
+		execRequest(http.MethodPut, handler, w, r)
 	})
 }
 
-func patch(config Config, handler funcHandler) http.Handler {
+func patch(config AppConfig, handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		logRequest(config.debug, r)
-
-		if r.Method == http.MethodPatch {
-			handler(w, r)
-		} else {
-			http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
-		}
+		traceRequest(config.debug, r)
+		execRequest(http.MethodPatch, handler, w, r)
 	})
 }
 
-func delete(config Config, handler funcHandler) http.Handler {
+func delete(config AppConfig, handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		logRequest(config.debug, r)
-
-		if r.Method == http.MethodDelete {
-			handler(w, r)
-		} else {
-			http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
-		}
+		traceRequest(config.debug, r)
+		execRequest(http.MethodDelete, handler, w, r)
 	})
 }
 
-func options(config Config, handler funcHandler) http.Handler {
+func options(config AppConfig, handler funcHandler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		logRequest(config.debug, r)
-
-		if r.Method == http.MethodOptions {
-			handler(w, r)
-		} else {
-			http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
-		}
+		traceRequest(config.debug, r)
+		execRequest(http.MethodOptions, handler, w, r)
 	})
 }

@@ -19,7 +19,7 @@ func loggerNew(debug bool, message string) {
 	}
 }
 
-func logRequest(debug bool, r *http.Request) {
+func traceRequest(debug bool, r *http.Request) {
 	loggerNew(
 		debug,
 		fmt.Sprintf("%s: http://%s%s", r.Method, r.Host, r.URL.Path),

@@ -1,7 +1,8 @@
 package main
 
 import (
-	"io"
+	"encoding/json"
+	"fmt"
 	"net/http"
 
 	web "github.com/FernandoCelmer/api.go/src"
@@ -14,11 +15,17 @@ func main() {
 		web.Version("0.1.0"),
 	)
 
-	app.Get("/hello", helloHandler)
-	app.Run(8080)
+	app.Get("/item", itemHandler)
 
+	app.Run(web.Port(8080))
 }
 
-func helloHandler(w http.ResponseWriter, r *http.Request) {
-	io.WriteString(w, "Hello!")
+type Response struct {
+	Message string `json:"message"`
+}
+
+func itemHandler(w http.ResponseWriter, r *http.Request) {
+	data := Response{Message: "Item"}
+	response, _ := json.Marshal(data)
+	fmt.Fprintf(w, string(response))
 }
