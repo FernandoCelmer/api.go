@@ -46,3 +46,12 @@ func Debug(value bool) AppOption {
 		option.debug = value
 	}
 }
+
+var appDefault = &AppConfig{
+	title:       "API.go",
+	description: "Minimalist API Test",
+	version:     "0.1.0",
+	docs:        true,
+	docs_url:    "/docs",
+	debug:       true,
+}

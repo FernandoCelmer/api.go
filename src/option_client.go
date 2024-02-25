@@ -11,3 +11,7 @@ func ContentType(value string) ClientOption {
 		option.contentType = value
 	}
 }
+
+var clientDefault = &ClientConfig{
+	contentType: "application/json",
+}
