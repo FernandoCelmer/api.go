@@ -15,7 +15,7 @@ To install, simply run:
 go get github.com/FernandoCelmer/api.go
 ```
 
-## Example
+## Required imports
 
 ```go
 package main
@@ -27,7 +27,22 @@ import (
 
 	web "github.com/FernandoCelmer/api.go/src"
 )
+```
 
+## Simple Example
+
+```go
+func main() {
+	app := web.NewApp()
+	app.Get("/item", itemHandler)
+
+	app.Run()
+}
+```
+
+## Example with parameters
+
+```go
 func main() {
 	app := web.NewApp(
 		web.Title("API"),
@@ -37,8 +52,17 @@ func main() {
 
 	app.Get("/item", itemHandler)
 
-	app.Run(web.Port(8080))
+	app.Run(
+		web.Host("127.0.0.1")
+		web.Port(8080),
+	)
 }
+```
+
+## Handler implementation
+
+
+```go
 
 type Response struct {
 	Message string `json:"message"`
