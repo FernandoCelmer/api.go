@@ -17,7 +17,10 @@ func main() {
 
 	app.Get("/item", itemHandler)
 
-	app.Run(web.Port(8080))
+	app.Run(
+		web.Host("127.0.0.5"),
+		web.Port(8080),
+	)
 }
 
 type Response struct {
