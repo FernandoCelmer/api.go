@@ -60,10 +60,7 @@ func (web *web) Run(args ...RunOption) {
 	_loadRun(args...)
 	addr := getAddr()
 
-	_loggerNew(
-		web.config.debug,
-		fmt.Sprintf("Api running on http://%s (Press CTRL+C to quit)", addr),
-	)
+	_loggerNew(fmt.Sprintf("Api running on http://%s (Press CTRL+C to quit)", addr))
 
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatalf("ListenAndServer: %v", err)
