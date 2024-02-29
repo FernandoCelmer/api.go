@@ -12,16 +12,13 @@ var (
 	logger = log.New(&buf, "logger: ", log.Lshortfile)
 )
 
-func loggerNew(debug bool, message string) {
-	if debug {
+func _loggerNew(message string) {
+	if appDefault.debug {
 		logger.Printf(message)
 		fmt.Print(&buf)
 	}
 }
 
-func traceRequest(debug bool, r *http.Request) {
-	loggerNew(
-		debug,
-		fmt.Sprintf("%s: http://%s%s", r.Method, r.Host, r.URL.Path),
-	)
+func _trace(r *http.Request) {
+	_loggerNew(fmt.Sprintf("%s: http://%s%s", r.Method, r.Host, r.URL.Path))
 }

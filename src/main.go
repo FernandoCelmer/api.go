@@ -13,7 +13,6 @@ func main() {
 	)
 
 	app.Get("/item", itemHandler)
-	app.Xpto("/xpto", itemHandler, ContentType("application/json"))
 
 	app.Run(
 		Host("127.0.0.5"),
