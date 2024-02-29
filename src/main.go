@@ -1,24 +1,23 @@
-package main
+package web
 
 import (
 	"encoding/json"
 	"net/http"
-
-	web "github.com/FernandoCelmer/api.go/src"
 )
 
 func main() {
-	app := web.NewApp(
-		web.Title("API"),
-		web.Description("Minimalist API Test"),
-		web.Version("0.1.0"),
+	app := NewApp(
+		Title("API"),
+		Description("Minimalist API Test"),
+		Version("0.1.0"),
 	)
 
 	app.Get("/item", itemHandler)
+	app.Xpto("/xpto", itemHandler, ContentType("application/json"))
 
 	app.Run(
-		web.Host("127.0.0.5"),
-		web.Port(8080),
+		Host("127.0.0.5"),
+		Port(8080),
 	)
 }
 
