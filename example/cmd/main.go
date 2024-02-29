@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"net/http"
 
 	web "github.com/FernandoCelmer/api.go/src"
@@ -30,5 +29,5 @@ type Response struct {
 func itemHandler(w http.ResponseWriter, r *http.Request) {
 	data := Response{Message: "Item"}
 	response, _ := json.Marshal(data)
-	fmt.Fprintf(w, string(response))
+	w.Write(response)
 }
