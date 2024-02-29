@@ -4,22 +4,6 @@ import (
 	"net/http"
 )
 
-func Request(
-	method string,
-	handler funcHandler,
-	w http.ResponseWriter,
-	r *http.Request,
-) {
-	if method == r.Method {
-		handler(w, r)
-	} else {
-		http.Error(
-			w, http.StatusText(405),
-			http.StatusMethodNotAllowed,
-		)
-	}
-}
-
 func _request(
 	method string,
 	handler funcHandler,
