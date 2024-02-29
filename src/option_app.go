@@ -55,3 +55,9 @@ var appDefault = &AppConfig{
 	docs_url:    "/docs",
 	debug:       true,
 }
+
+func _loadApp(args ...AppOption) {
+	for _, opt := range args {
+		opt(appDefault)
+	}
+}

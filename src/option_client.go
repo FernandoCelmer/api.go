@@ -24,3 +24,11 @@ func WithContentType(h http.HandlerFunc) http.HandlerFunc {
 var clientDefault = &ClientConfig{
 	contentType: "application/json",
 }
+
+func _loadClient(args ...ClientOption) *ClientConfig {
+	var clientDefault = &ClientConfig{}
+	for _, opt := range args {
+		opt(clientDefault)
+	}
+	return clientDefault
+}
