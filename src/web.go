@@ -2,13 +2,15 @@ package web
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 )
 
 type funcHandler func(http.ResponseWriter, *http.Request)
 
 type Client interface {
-	Get(route string, handler funcHandler)
+	Xpto(route string, handler funcHandler, args ...ClientOption)
+	Get(route string, handler funcHandler, args ...ClientOption)
 	Post(route string, handler funcHandler)
 	Put(route string, handler funcHandler)
 	Patch(route string, handler funcHandler)
@@ -22,9 +24,7 @@ type web struct {
 }
 
 func NewApp(args ...AppOption) Client {
-	for _, opt := range args {
-		opt(appDefault)
-	}
+	doMagicWithApp(args...)
 
 	if appDefault.docs {
 		http.Handle(appDefault.docs_url, get(*appDefault, docsHandler))
@@ -33,8 +33,12 @@ func NewApp(args ...AppOption) Client {
 	return &web{*appDefault}
 }
 
-func (web *web) Get(route string, handler funcHandler) {
-	http.Handle(route, get(web.config, handler))
+func (web *web) Xpto(route string, handler funcHandler, args ...ClientOption) {
+	http.Handle(route, Handler(xptoHandler, WithContentType))
+}
+
+func (web *web) Get(route string, handler funcHandler, args ...ClientOption) {
+	http.Handle(route, get(web.config, handler, args...))
 }
 
 func (web *web) Post(route string, handler funcHandler) {
@@ -58,9 +62,7 @@ func (web *web) Options(route string, handler funcHandler) {
 }
 
 func (web *web) Run(args ...RunOption) {
-	for _, opt := range args {
-		opt(runDefault)
-	}
+	doMagicWithRun(args...)
 
 	loggerNew(
 		web.config.debug,
@@ -71,6 +73,8 @@ func (web *web) Run(args ...RunOption) {
 		),
 	)
 
-	http.ListenAndServe(
-		fmt.Sprintf("%s:%d", runDefault.host, runDefault.port), nil)
+	if err := http.ListenAndServe(
+		fmt.Sprintf("%s:%d", runDefault.host, runDefault.port), nil); err != nil {
+		log.Fatalf("ListenAndServer: %v", err)
+	}
 }

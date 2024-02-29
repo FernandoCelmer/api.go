@@ -20,8 +20,12 @@ func execRequest(
 	}
 }
 
-func get(config AppConfig, handler funcHandler) http.Handler {
+func get(config AppConfig, handler funcHandler, args ...ClientOption) http.Handler {
+	client := doMagicWithClient(args...)
+
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", client.contentType)
+
 		traceRequest(config.debug, r)
 		execRequest(http.MethodGet, handler, w, r)
 	})
